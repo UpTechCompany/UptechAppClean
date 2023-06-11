@@ -70,7 +70,7 @@ public class EmergencyAdapter extends RecyclerView.Adapter<EmergencyAdapter.View
         Log.i(TAG, "Emergency - " + emergency.getTitle());
 
         String dateStr = emergency.getTime();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:SSS", Locale.ENGLISH);
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm' 'dd.MM.yyyy", Locale.ENGLISH);
         df.setTimeZone(TimeZone.getTimeZone(String.valueOf(userTimeZone)));
         Date date = null;
         try {
