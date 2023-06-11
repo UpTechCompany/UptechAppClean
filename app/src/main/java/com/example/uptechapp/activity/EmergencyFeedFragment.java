@@ -44,6 +44,7 @@ public class EmergencyFeedFragment extends Fragment {
     List<Emergency> myEmergencyList;
     EmergencyAdapter adapter;
 
+
     public Dialog Dialog(@Nullable Bundle savedInstanceState) {
         String title = getResources().getString(R.string.training);
         String message = getResources().getString(R.string.massage);

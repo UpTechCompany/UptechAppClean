@@ -21,6 +21,8 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getTheme().getResources().getConfiguration().uiMode &= ~Configuration.UI_MODE_NIGHT_MASK;
+        getTheme().getResources().getConfiguration().uiMode |= Configuration.UI_MODE_NIGHT_NO;
         setContentView(R.layout.activity_splash);
 
         new Thread(() -> {

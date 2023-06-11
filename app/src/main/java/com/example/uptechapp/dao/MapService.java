@@ -154,21 +154,24 @@ public class MapService implements OnMapReadyCallback, GoogleMap.OnMapClickListe
                             Uri downloadUri = uri;
 
                             String url = downloadUri.toString();
-                            String[] time = Calendar.getInstance().getTime().toString().split(" ");
-                            Log.i("time", "Time" + Arrays.toString(time));
-
-                            Emergency emergency = null;
+                            String[] time = new String[0];
                             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                                emergency = new Emergency(
-                                        "-1",
-                                        editTextLabel.getText().toString(),
-                                        editTextDesc.getText().toString(),
-                                        LocalDateTime.now(ZoneOffset.UTC).toString(),
-                                        url,
-                                        location.latitude,
-                                        location.longitude
-                                );
+                                time = LocalDateTime.now(ZoneOffset.UTC).toString().substring(0, 16).split("T");
                             }
+                            Log.i("time", "Time" + Arrays.toString(time));
+                            String emTime = time[1] + " " + time[0].substring(8) + "." + time[0].substring(5,7) + "." + time[0].substring(0,4);
+                            Log.d("time", emTime);
+                            Emergency emergency = null;
+                            emergency = new Emergency(
+                                    "-1",
+                                    editTextLabel.getText().toString(),
+                                    editTextDesc.getText().toString(),
+                                    emTime,
+                                    url,
+                                    11,
+                                    11
+                            );
+
 
                             EmergencyApiService.getInstance().postJson(emergency).enqueue(new Callback<Emergency>() {
                                 @Override

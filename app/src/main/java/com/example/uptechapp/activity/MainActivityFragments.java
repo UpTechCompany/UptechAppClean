@@ -6,6 +6,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.renderscript.ScriptGroup;
 import android.util.Log;
@@ -26,8 +28,14 @@ public class MainActivityFragments extends AppCompatActivity {
         binding = ActivityMainFragmentsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
         init();
     }
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+    }
+
 
     private void init() {
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.mainFragmentContainer);

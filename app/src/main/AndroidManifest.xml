@@ -5,10 +5,14 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="INTERACT_ACROSS_USERS_FULL"/>
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
+        android:configChanges="uiMode"
+        android:hardwareAccelerated="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/launch_logo"
@@ -31,10 +35,11 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="YOUR_API_KEY" />
+            android:value="AIzaSyBXcvUYeyWNBqjOpkh_T4Mr5etm3kjtqTg" />
 
         <activity
             android:name=".activity.MainActivityFragments"
+
             android:exported="false" />
         <activity
             android:name=".activity.CreateActivity"
