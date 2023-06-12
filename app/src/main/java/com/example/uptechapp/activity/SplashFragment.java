@@ -76,7 +76,7 @@ public class SplashFragment extends Fragment {
 
     private void updateLocale() {
         String language = Locale.getDefault().getLanguage();
-        SplashActivity.language = language;
+        SplashFragment.language = language;
         Locale locale = new Locale(language);
         Locale.setDefault(locale);
         Configuration configuration = getResources().getConfiguration();

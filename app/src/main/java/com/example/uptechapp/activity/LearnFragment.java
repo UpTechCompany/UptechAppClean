@@ -30,7 +30,7 @@ public class LearnFragment extends Fragment {
             new GifImage(R.drawable.learn3_en)
     );
 
-    public String language = SplashActivity.getLanguage();
+    public String language = SplashFragment.getLanguage();
 
 
     @SuppressLint("UseRequireInsteadOfGet")

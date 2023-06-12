@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.renderscript.ScriptGroup;
 import android.util.Log;
 import android.view.Gravity;
@@ -153,6 +155,8 @@ public class MapService implements OnMapReadyCallback, GoogleMap.OnMapClickListe
                         public void onSuccess(Uri uri) {
                             Uri downloadUri = uri;
 
+                            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+
                             String url = downloadUri.toString();
                             String[] time = new String[0];
                             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
@@ -164,7 +168,7 @@ public class MapService implements OnMapReadyCallback, GoogleMap.OnMapClickListe
                             Emergency emergency = null;
                             emergency = new Emergency(
                                     "-1",
-                                    "aboba",
+                                    sharedPref.getString("email", "none"),
                                     editTextLabel.getText().toString(),
                                     editTextDesc.getText().toString(),
                                     emTime,
@@ -194,7 +198,7 @@ public class MapService implements OnMapReadyCallback, GoogleMap.OnMapClickListe
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "server off, try later", Toast.LENGTH_SHORT).show();
                 }
             });
         } else {
@@ -206,11 +210,13 @@ public class MapService implements OnMapReadyCallback, GoogleMap.OnMapClickListe
     public void onMapReady(@NonNull GoogleMap googleMap) {
         googleMap.setOnMapClickListener(this);
         googleMap.setOnMapLongClickListener(this);
-//
-//        for (Emergency emergency: myEmergencyList) {
-//            emergency.setLocation(emergency.getLattitude(), emergency.getLongitude());
-//            googleMap.addMarker(new MarkerOptions().position(emergency.getLocation()).title(emergency.getTitle()));
-//        }
+
+        if (myEmergencyList != null) {
+            for (Emergency emergency : myEmergencyList) {
+                emergency.setLocation(emergency.getLattitude(), emergency.getLongitude());
+                googleMap.addMarker(new MarkerOptions().position(emergency.getLocation()).title(emergency.getTitle()));
+            }
+        }
 
 
         Log.i(TAG, "eml before click: " + MyViewModel.getInstance().getEmergencyLiveData().getValue());

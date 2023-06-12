@@ -91,6 +91,7 @@ public class Emergency {
     public String toString() {
         return "Emergency{" +
                 "id='" + id + '\'' +
+                ", email='" + email + '\'' +
                 ", photoUrl='" + photoUrl + '\'' +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +

@@ -3,7 +3,6 @@ package com.example.uptechapp.activity;
 import static android.app.Activity.RESULT_OK;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -22,12 +21,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.uptechapp.R;
 import com.example.uptechapp.databinding.FragmentLoginBinding;
-import com.example.uptechapp.model.User;
 import com.google.android.gms.auth.api.identity.BeginSignInRequest;
 import com.google.android.gms.auth.api.identity.BeginSignInResult;
 import com.google.android.gms.auth.api.identity.Identity;
@@ -116,14 +113,10 @@ public class LoginFragment extends Fragment {
 
                         // get id from database
 
-                        User user = new User(
-                                -1,
-                                credential.getDisplayName(),
-                                credential.getId()
-                        );
 
                         long id = 1L;
 
+                        editor.putString("email", email);
                         editor.putLong(getString(R.string.id_logging), id);
                         editor.apply();
 
