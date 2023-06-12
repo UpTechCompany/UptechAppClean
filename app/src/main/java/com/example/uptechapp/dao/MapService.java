@@ -164,6 +164,7 @@ public class MapService implements OnMapReadyCallback, GoogleMap.OnMapClickListe
                             Emergency emergency = null;
                             emergency = new Emergency(
                                     "-1",
+                                    "aboba",
                                     editTextLabel.getText().toString(),
                                     editTextDesc.getText().toString(),
                                     emTime,

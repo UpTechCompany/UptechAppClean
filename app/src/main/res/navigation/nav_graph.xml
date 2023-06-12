@@ -3,7 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@+id/fragment_emergency_feed">
+    app:startDestination="@+id/fragment_splash">
+
+    <fragment
+        android:id="@+id/fragment_splash"
+        tools:layout="@layout/fragment_splash"
+        android:name="com.example.uptechapp.activity.SplashFragment" >
+        <action
+            android:id="@+id/action_fragment_splash_to_fragment_login"
+            app:destination="@id/fragment_login" />
+        <action
+            android:id="@+id/action_fragment_splash_to_fragment_emergency_feed"
+            app:destination="@id/fragment_emergency_feed" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_login"
+        tools:layout="@layout/fragment_login"
+        android:name="com.example.uptechapp.activity.LoginFragment" >
+        <action
+            android:id="@+id/action_fragment_login_to_fragment_emergency_feed"
+            app:destination="@id/fragment_emergency_feed" />
+    </fragment>
 
     <fragment
         android:id="@+id/fragment_emergency_feed"
@@ -14,18 +35,6 @@
             app:destination="@id/fragment_create" />
         <action
             android:id="@+id/action_fragment_emergency_feed_to_fragment_map"
-            app:destination="@id/fragment_map" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/fragment_create"
-        tools:layout="@layout/fragment_create_emergency"
-        android:name="com.example.uptechapp.activity.CreateEmergencyFragment" >
-        <action
-            android:id="@+id/action_fragment_create_to_fragment_emergency_feed"
-            app:destination="@id/fragment_emergency_feed" />
-        <action
-            android:id="@+id/action_fragment_create_to_fragment_map"
             app:destination="@id/fragment_map" />
     </fragment>
 
